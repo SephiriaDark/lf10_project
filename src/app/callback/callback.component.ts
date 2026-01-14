@@ -15,7 +15,7 @@ export class CallbackComponent implements OnInit {
 
   async ngOnInit() {
     const success = await this.authService.handleCallback();
-    
+
     if (success) {
       this.router.navigate(['/employees']);
     } else {
