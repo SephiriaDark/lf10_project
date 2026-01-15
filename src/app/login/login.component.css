@@ -13,6 +13,7 @@
 .hitec_login_username,
 .hitec_login_password{
     display: flex;
+    justify-content: space-between;
     margin-top: 2rem;
 }
 
@@ -28,4 +29,14 @@
 
 .hitec_login_password{
     margin-bottom: 2rem;
+}
+
+.hitec_login_button {
+    display: block;
+    margin: 0 auto;
+    padding: 0.5rem;
+    font-size: large;
+    width: 12vw;
+    height: 48px;
+    margin-bottom: 1rem;
 }

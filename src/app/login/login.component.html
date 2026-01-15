@@ -3,12 +3,12 @@
     <div class="hitec_login_title_banner">
         HiTec GmbH | Employee Management System
     </div>
-    <form action="home">
+    <form action="home" method="post">
         <div class="hitec_login_username">
             <div class="hitec_login_username_title">
                 Username
             </div>
-            <div class="hitec_login_username_text">
+            <div class="hitec_login_username_text" required>
                 <input type="text"/>
             </div>
         </div>
@@ -16,12 +16,12 @@
             <div class="hitec_login_password_title">
                 Passwort
             </div>
-            <div class="hitec_login_password_text">
+            <div class="hitec_login_password_text" required>
                 <input type="password"/>
             </div>
         </div>
-        <button>
-            login
+        <button class="hitec_login_button">
+            Login
         </button>
     </form>
 </div>
