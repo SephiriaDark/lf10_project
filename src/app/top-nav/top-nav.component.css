@@ -1,0 +1,16 @@
+.hitec_topnav_wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.hitec_topnav_logo{
+    display: grid;
+}
+.hitec_topnav_employees{
+    display: grid;
+}
+.hitec_topnav_qualification {
+    display: grid;
+}
+.hitec_topnav_logout {
+    display: grid;
+}
