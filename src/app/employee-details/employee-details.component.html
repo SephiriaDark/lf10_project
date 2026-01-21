@@ -1,0 +1,80 @@
+<div class="modal fade"
+     tabindex="-1"
+     [class.show]="show"
+     [style.display]="show ? 'block' : 'none'">
+
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div *ngIf="employee">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Mitarbeiter {{ employee.id }} Details
+          </h5>
+          <button class="btn-close" (click)="close()"></button>
+        </div>
+
+        <div class="modal-body">
+          <h5>Kontakt informationen:</h5>
+          <div class="row mb-1">
+            <div class="col-md-3">
+              <strong>Vorname:</strong>
+            </div>
+            <div class="col-md-3">
+              <strong>Nachname:</strong>
+            </div>
+            <div class="col-md-3">
+              <strong>Telefonnummer:</strong>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3">
+              {{ employee.firstName }}
+            </div>
+            <div class="col-md-3">
+              {{ employee.lastName }}
+            </div>
+            <div class="col-md-3">
+              {{ employee.phone }}
+            </div>
+          </div>
+          <h5>Addresse:</h5>
+          <div class="row mb-1">
+            <div class="col-md-3">
+              <strong>Postzahl:</strong>
+            </div>
+            <div class="col-md-3">
+              <strong>Ort:</strong>
+            </div>
+            <div class="col-md-3">
+              <strong>Straße:</strong>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3">
+               {{ employee.postcode }}
+            </div>
+            <div class="col-md-3">
+              {{ employee.city }}
+            </div>
+            <div class="col-md-3">
+              {{ employee.street }}
+            </div>
+          </div>
+          <div class="container mt-3">
+            <h5>Qualifikationen:</h5>
+            <li *ngFor="let s of employee?.skillSet">
+              {{ s.skill }}
+            </li>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <button class="btn btn-primary">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show" *ngIf="show"></div>
