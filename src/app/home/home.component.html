@@ -4,13 +4,9 @@
         <h1>Willkommen {{name}}</h1>
     </div>
     <div class="hitec_home_employees">
-        <button>
-            Mitarbeiter
-        </button>    
+        <button type="button" [routerLink]="'/employees'">Mitarbeiter</button>  
     </div>
     <div class="hitec_home_qualifications">
-        <button>
-            Qualifikation
-        </button>
+        <button type="button" routerLink="/#" (click)="$event.preventDefault()">Qualifikationen</button>
     </div>
 </div>
