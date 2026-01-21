@@ -1,0 +1,18 @@
+.hitec_home_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hitec_home_welcome {
+    font-size: xx-large;
+    margin: 2rem;
+}
+.hitec_home_employees, .hitec_home_qualifications {
+    margin: 2rem;
+}
+.hitec_home_employees > button, .hitec_home_qualifications > button {
+    font-size: x-large;
+    width: 50vw;
+    height: 48px;
+}

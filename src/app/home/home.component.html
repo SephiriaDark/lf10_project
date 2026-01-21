@@ -1,0 +1,12 @@
+<!-- Todo: Links müssen eingefügt werden (placeholder ersetzen) -->
+<div class="hitec_home_wrapper">
+    <div class="hitec_home_welcome mb4 text-xl">
+        <h1>Willkommen {{name}}</h1>
+    </div>
+    <div class="hitec_home_employees">
+        <button type="button" [routerLink]="'/employees'">Mitarbeiter</button>  
+    </div>
+    <div class="hitec_home_qualifications">
+        <button type="button" routerLink="/#" (click)="$event.preventDefault()">Qualifikationen</button>
+    </div>
+</div>
