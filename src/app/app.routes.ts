@@ -3,10 +3,23 @@ import { authGuard } from './auth.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
+  { 
+    path: 'login', 
+    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) 
+  },
+
+  { 
+    path: 'callback', 
+    loadComponent: () => import('./callback/callback.component').then(m => m.CallbackComponent) 
+  },
+
+  //Main Layout with Child Pages
   {
     path: '',
     component: MainLayoutComponent,
-    //canActivate: [authGuard],
+    //canActivate: [authGuard],  
     children: [
       { 
         path: 'home', 
@@ -14,19 +27,13 @@ export const routes: Routes = [
       },
       { 
         path: 'employees', 
-        loadComponent: () => import('./employee-list/employee-list.component').then(m => m.EmployeeListComponent),
+        loadComponent: () => import('./employee-list/employee-list.component').then(m => m.EmployeeListComponent)
       }
-      // Additional Routes
+      // Other Routes
     ]
   },
-  { 
-    path: 'login', 
-    loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) 
-  },
-  { 
-    path: 'callback', 
-    loadComponent: () => import('./callback/callback.component').then(m => m.CallbackComponent) 
-  },
-  { path: '', redirectTo: 'login' }
+
+  { path: '**', redirectTo: 'login' }
 ];
+
 
