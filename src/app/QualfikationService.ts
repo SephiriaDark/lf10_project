@@ -9,29 +9,20 @@ import {Qualification} from "./Qualification";
 })
 export class QualificationService {
     private apiUrl = 'http://localhost:8089/qualifications';
+  //private apiUrl = 'https://employee.szut.dev/qualifications'
 
     constructor(private http: HttpClient, private authService: AuthService) {}
 
     private getHeaders(): HttpHeaders {
         //const token = this.authService.getAccessToken();
-        const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjYxNzMwODk5OTM0ZmRlZTc4MGU3Yzg1NWIzZjUxOTBlIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAvYXBwbGljYXRpb24vby9lbXBsb3llZV9hcGkvIiwic3ViIjoiOTdhMzRmMWE2ZDk2YzU0OGViZGNmZjYxODgxMGE2YzU5MDMwZjJhMDcxNmFlYjg3ZjNkMjBhOWFkMWVkYWUwMSIsImF1ZCI6ImVtcGxveWVlX2FwaV9jbGllbnQiLCJleHAiOjE3NjkyOTM1NTcsImlhdCI6MTc2OTI5MDU1NywiYXV0aF90aW1lIjoxNzY5MjkwNTU3LCJhY3IiOiJnb2F1dGhlbnRpay5pby9wcm92aWRlcnMvb2F1dGgyL2RlZmF1bHQiLCJhenAiOiJlbXBsb3llZV9hcGlfY2xpZW50IiwidWlkIjoiOW9mRlpXNUR6N0l1MFd2emNvNXZhU3kySk0xNkNKVXNYQVVuOWp5cCJ9.F6FWuwL7F_zTU5A5HBXTAZCvOEedQRFBL6Nk0cXHq2-u58TL3WxN1dwD9qgU2FcJl_FRYzIiPHRpwJra8gWbrSPESvY27r4gHOaImCJlgMvfkbtfrckDjG4twxLKZT2iAFrJuAl17rdSFvQJMpHJchRJY_4ZkuZBa_8U7DGp0PSb1NZ1vF57mi-NfZ7b-pyIQYQ7-fTRcFlLup_AmjdX71kKSBYFR9D6fluj4wdC02_4Gwu7x7yWg_AerOcjfHxw6vibR-9KqGm4o0rieXcTGwqOO-3P4Hfsnbtsr7bDAVd-Vsi79irWEWpkJ5FkjGuc98-dT-oyu9sIvs1swA68Kj_58lTSGgDgw7c8ZV-jEuJ_TlxHhLdHkREWL_HSePHP2XDb7gIWqbmjCPvUtWoaSV6dSTQ1H8xlT7uNdY5EWWN0U9xIdduRaHq-iWS_4BPYep1HVLGJwf4XGnm45OnzJW3dt1gQwDK1svjO2ukexb87iJgyrsYPXIAkSGweXn0lX-A8_FnWDFRjeWzjjf2UIUNStcyKduw3tuFft_YpL0nYdCXA2rKrf-sKlSGssLBYz0KaKA38zYiZsMil5G6e60lCf2U732lLhH4UrSUBprs3ngnFe2Vwc2Ee_Ao_Iz3gv15_4BOOgqbjxExqTPMLcDIJFKpO1JW5Fhd1c-t8DBs'
+        const token = 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjYxNzMwODk5OTM0ZmRlZTc4MGU3Yzg1NWIzZjUxOTBlIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAvYXBwbGljYXRpb24vby9lbXBsb3llZV9hcGkvIiwic3ViIjoiOTdhMzRmMWE2ZDk2YzU0OGViZGNmZjYxODgxMGE2YzU5MDMwZjJhMDcxNmFlYjg3ZjNkMjBhOWFkMWVkYWUwMSIsImF1ZCI6ImVtcGxveWVlX2FwaV9jbGllbnQiLCJleHAiOjE3NjkzNTE1MDgsImlhdCI6MTc2OTM0ODUwOCwiYXV0aF90aW1lIjoxNzY5MzQ4NTA4LCJhY3IiOiJnb2F1dGhlbnRpay5pby9wcm92aWRlcnMvb2F1dGgyL2RlZmF1bHQiLCJhenAiOiJlbXBsb3llZV9hcGlfY2xpZW50IiwidWlkIjoia1BsUWVVSU55bzVETEMzMVFJbEloVGxBdlk5Q1pQUHZYM0ZpRVpJMSJ9.SZMy0C3Fsg1ZNdIXTIo5apyre6Aq5SXrmhW1waMlX_jQh_zvSxrDG2re1rHEAc0AjaGcDvF0L5fEH39tA1BggTfMSa9-2odhQc_5Jo46BEZhZCcwFFnW7g38a8im4MvT2Ry2v53ikeT0ltMa8N2_KpWhmPDexYLXAefOqEHIi4260992pDETaHTmSYegXwswlWccSIJFue0KUcmPla4OJwsmJYvsma7yimHuLckYbW-DfpFitv34lcsyxESkH_sXjHwwwbl47urFmyKZ2alRfQs4nhs_mmJxJfqSkAiEmGcla8FjRCf4uzp314O51deYQcZ8j6ZWgnmhFWM9eth6mcxFmWf_9_aDww_V3EyiNyAHwBL5BQ10iPEPd9N8rjs9hXxdVi3AlDjnOjTBH3mrZ2QrMJs0Tn_VbdjuCfKI63LQJmniycyfB1-2c72g3X-4XEZEsXe7hKSB4XM48ELewShjrNrJNgVsHVSj_QU_K3xNtJRNSBWJ360SGxxwxt6a3MGm3r-cJj3lj_Y0S4tn8I7PjT5jvk9v4YngdNd4FdqLA1wONPz6F0aeOqWa-hjyoy6Zjj5aTO8ZNf63BKQuOCFRmNxvJsrUK2E7im7--q0XJDSZ2kyqrV2h9PufAsIVG-SiiLNVsZ_CL0nH1pbRi2sJv3KsYoVvA-r2XNNHjRQ'
 
         return new HttpHeaders()
             .set('Authorization', `Bearer ${token}`)
             .set('Content-Type', 'application/json');
     }
 
-    // getQualifications(): Observable<Qualification[]> {
-    //     return this.http.get<Qualification[]>(this.apiUrl, {
-    //         headers: this.getHeaders()
-    //     });
-    // }
 
-    getQualificationById(id: number): Observable<Qualification> {
-        return this.http.get<Qualification>(`${this.apiUrl}/${id}`, {
-            headers: this.getHeaders()
-        });
-    }
 
     deleteQualification(id: number): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/${id}`, {
