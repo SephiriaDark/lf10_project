@@ -11,17 +11,24 @@
 POST http://localhost:9000/application/o/token/
 Content-Type: application/x-www-form-urlencoded
 
-grant_type = password &
-username = john &
-password = {{app_password}} &
-client_id = employee_api_client
+grant_type=password&username=john&password={{app_password}}&client_id=employee_api_client
 
+
+
+###
+POST http://keycloak.szut.dev/auth/realms/szut/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=employee-management-service&username=user&password=test
 ###
 
 
 @bearer_token=eyJhbGciOiJSUzI1NiIsImtpZCI6IjM4ODFhYmEzMTRjYTdhYmM0MWFjOTZiNWJlZThmMzNkIiwidHlwIjoiSldUIn0.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjkwMDAvYXBwbGljYXRpb24vby9lbXBsb3llZV9hcGkvIiwic3ViIjoiZjhjMDNjOWU5ZDliZDc0ZGY3ZDQwZjVjNjRlODI1NDNhYjY1YTIyMzQ3MTA5NTJhNzQwYzUxN2I5YTE0ZjU4MSIsImF1ZCI6ImVtcGxveWVlX2FwaV9jbGllbnQiLCJleHAiOjE3Njk2MDM4NzcsImlhdCI6MTc2OTYwMDg3NywiYXV0aF90aW1lIjoxNzY5NjAwODc3LCJhY3IiOiJnb2F1dGhlbnRpay5pby9wcm92aWRlcnMvb2F1dGgyL2RlZmF1bHQiLCJhenAiOiJlbXBsb3llZV9hcGlfY2xpZW50IiwidWlkIjoiSEJaQ0lmMTNEcGNKYXpPY1hSVnVpMEZLeEhJckhCRzE0MVhYZ2tLYyJ9.UugdMzEY1t_LhgCtcaxkSOCjNuRyjetAFmGMU15J94ddCKdfIeR2nBQuk0qRMH-HQgKs35W2sGGMwkXfHkkvGyxfgECyEJMXHWRBEcpvEKtKMnp7kGlDeWgcNODFXI4Yg-ryBE3RRP0D_CLEYOSVov_vpJ4BUNeYB5GjV7YcbD6b5tbGWzZTbQnR5ViXhzBwN7edUxdU5awwSNpgsS2tyqun3LMstgPeIYEMbGtwaVFLYtxG45HnxUa0AaOJV1KjBBVoI-ABSA1EGREohm4BcWHW3GXm1tYLl3iLCMDPyYnr8qeV8Rx1HBraDYYvqV40yyV9nzj9Up_XiOx5XSVDzZxv08TM0nTqnB_jKr94Cw-9Z0PtaVslTQ0rWZsC4FTTdX_gsWGJPBgCnZ17axHq1I_cOjNNCWhy8KrgpYyqySKIffMyf058ou8F-AtC0BMxzyu4v2-Mk5gIHVNe8ho1XMdRnwIdHkcMPCHS0MlZ2mMFVd9k5Wjh3V_hTAWhjnYcMU4_vtAJPiikmc-1erZD4iS_wvzEbBv745eeXfzgMnCICOqRpnZ1HgAMI7aF5ig9V3D4Qjv_pjtPWf-T7co0-UFS_wJKT02x61BaPwwYAiRuFY6-Ql1R0nrbJA-IdTQE7vo-4w3CMz2hvN4fy0m3n_2hc7W7RAA_F_CETlxLA1Q
 
-###Bearer Token
+### Bearer Token
 GET http://localhost:8089/employees
 Authorization: Bearer {{bearer_token}}
 
+### Bearer Token
+GET http://localhost:8089/qualifications
+Authorization: Bearer {{bearer_token}}
