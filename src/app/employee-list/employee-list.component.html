@@ -3,60 +3,56 @@
 <app-employee-create #createModal (saved)="refreshList()"></app-employee-create>
 <app-employee-delete #deleteModal (saved)="refreshList()"></app-employee-delete>
 <div class="mb-4 mt-3">
-<h1 class="text-center">Mitarbeiterübersicht</h1>
-<ul>
-  <div class="container mt-3">
-    <h5 class="">Filter:
-      <input type="text" placeholder="Vorname">
-      <input type="text" placeholder="Nachname">
-      <input type="text" placeholder="Ort">
-      <input type="text" placeholder="Qualifikation" class="me-2">
-      <button type="submit" class="btn btn-primary">Anwenden</button>
-    </h5>
-  </div>
+  <h1 class="text-center">Mitarbeiterübersicht</h1>
+  <ul>
+    <div class="mb-4 mt-3">
+      <div class="d-flex justify-content-center align-items-center gap-2">
+        <label for="filterInput" class="me-2">Filter:</label>
+        <input type="text" class="form-control" placeholder="Vorname" style="width: 150px;" [(ngModel)]="filter.firstName">
+        <input type="text" class="form-control" placeholder="Nachname" style="width: 150px;" [(ngModel)]="filter.lastName">
+        <input type="text" class="form-control" placeholder="Ort" style="width: 150px;" [(ngModel)]="filter.city">
+        <input type="text" class="form-control" placeholder="Qualifikation" style="width: 150px;" [(ngModel)]="filter.skill">
+        <button type="submit" class="btn btn-primary" (click)="applyFilter()">Anwenden</button>
+      </div>
+    </div>
 
-  <table class="table table-bordered table-striped">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Vorname</th>
-      <th>Nachname</th>
-      <th>Ort</th>
-      <th>Qualifikation</th>
-      <th>Aktionen</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let e of employees$ | async">
-      <td>{{e.id}}</td>
-      <td>{{e.firstName}}</td>
-      <td>{{e.lastName}}</td>
-      <td>{{e.city}}</td>
-      <td>  <ul class="list-unstyled mb-0">
-        <li *ngFor="let skill of e.skillSet">{{skill.skill}}</li>
-      </ul>
-      </td>
-
-      <td>
-        <button type="button" class="btn btn-info me-4"
-                (click)="detailsModal.open(e)">
-          Info
-        </button>
-        <button type="button" class="btn btn-primary me-4"
-                (click)="editModal.open(e)">
-          Bearbeiten
-        </button>
-        <button type="button" class="btn btn-danger"
-                (click)="deleteModal.open(e)">
-          Löschen
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <button type="btn" class="btn btn-outline-primary" (click)="createModal.open()">
-    + Mitarbeiter anlegen
-  </button>
-  <!--  <Button (click)="addEmployee()" class="btn btn-primary">Neuer Mitarbeiter</Button>-->
-</ul>
+    <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Vorname</th>
+        <th>Nachname</th>
+        <th>Ort</th>
+        <th>Qualifikation</th>
+        <th>Aktionen</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let e of employees$ | async">
+        <td>{{ e.id }}</td>
+        <td>{{ e.firstName }}</td>
+        <td>{{ e.lastName }}</td>
+        <td>{{ e.city }}</td>
+        <td>None</td>
+        <td>
+          <button type="button" class="btn btn-info me-4"
+                  (click)="detailsModal.open(e)">
+            Info
+          </button>
+          <button type="button" class="btn btn-primary me-4"
+                  (click)="editModal.open(e)">
+            Bearbeiten
+          </button>
+          <button type="button" class="btn btn-danger"
+                  (click)="deleteModal.open(e)">
+            Löschen
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <button type="btn" class="btn btn-outline-primary" (click)="createModal.open()">
+      + Mitarbeiter anlegen
+    </button>
+  </ul>
 </div>

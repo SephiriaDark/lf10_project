@@ -31,6 +31,15 @@ export class EmployeeCreateComponent {
 
 
   open() {
+    this.employee = {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      street: '',
+      postcode: '',
+      city: '',
+      skillSet: []
+    };
     this.show = true;
     this.selectedQualificationIds = [];
   }
@@ -72,6 +81,7 @@ export class EmployeeCreateComponent {
   isSelected(qualificationId: number): boolean {
     return this.selectedQualificationIds.includes(qualificationId);
   }
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   save() {
     const token =this.tokenService.getToken();
