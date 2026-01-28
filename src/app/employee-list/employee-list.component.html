@@ -1,9 +1,53 @@
-<h1>LF10-Starter</h1>
-Wenn Sie in der EmployeeListComponent.ts ein gültiges Bearer-Token eintragen, sollten hier die Namen der in der Datenbank gespeicherten Mitarbeiter angezeigt werden!
+<app-employee-details #detailsModal></app-employee-details>
+<app-employee-edit #editModal (saved)="refreshList()"></app-employee-edit>
+<h1 style="text-align:center">Mitarbeiterubersicht</h1>
 <ul>
-  @for(e of employees$ | async; track e.id) {
-    <li>
-      {{e.lastName }}, {{e.firstName}}
-    </li>
-  }
+  <div class="container mt-3">
+    <h5 class="">Filter:
+      <input type="text" placeholder="Vorname">
+      <input type="text" placeholder="Nachname">
+      <input type="text" placeholder="Ort">
+      <input type="text" placeholder="Qualifikation" class="me-2">
+      <button type="submit" class="btn btn-success">Filter anwenden</button>
+    </h5>
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>Ort</th>
+      <th>Qualifikation</th>
+      <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of employees$ | async">
+      <td>{{e.id}}</td>
+      <td>{{e.firstName}}</td>
+      <td>{{e.lastName}}</td>
+      <td>{{e.city}}</td>
+      <td>None</td>
+      <td>
+        <button type="button" class="btn btn-info me-4"
+                (click)="detailsModal.open(e)">
+          Details
+        </button>
+        <button type="button" class="btn btn-primary me-4"
+                (click)="editModal.open(e)">
+          Edit
+        </button>
+        <button type="button" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button type="btn" class="btn btn-outline-primary">
+    + Mitarbeiter anlegen
+  </button>
+  <!--  <Button (click)="addEmployee()" class="btn btn-primary">Neuer Mitarbeiter</Button>-->
 </ul>
