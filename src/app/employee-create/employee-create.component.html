@@ -1,0 +1,66 @@
+<div class="modal fade"
+     tabindex="-1"
+     [class.show]="show"
+     [style.display]="show ? 'block' : 'none'">
+
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Neuen Mitarbeiter anlegen</h5>
+        <button class="btn-close" (click)="close()"></button>
+      </div>
+
+      <div class="modal-body">
+        <h5>Kontakt informationen:</h5>
+        <div class="row mb-3">
+          <div class="col">
+            <input class="form-control"
+                   placeholder="Vorname"
+                   [(ngModel)]="employee.firstName">
+          </div>
+          <div class="col">
+            <input class="form-control"
+                   placeholder="Nachname"
+                   [(ngModel)]="employee.lastName">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <input class="form-control"
+                   placeholder="Telefon"
+                   [(ngModel)]="employee.phone">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <h5>Addresse:</h5>
+          <div class="col">
+            <input class="form-control"
+                   placeholder="Straße"
+                   [(ngModel)]="employee.street">
+          </div>
+          <div class="col">
+            <input class="form-control"
+                   placeholder="PLZ"
+                   [(ngModel)]="employee.postcode">
+          </div>
+          <div class="col">
+            <input class="form-control"
+                   placeholder="Ort"
+                   [(ngModel)]="employee.city">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" (click)="save()">
+          Speichern
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show" *ngIf="show"></div>
