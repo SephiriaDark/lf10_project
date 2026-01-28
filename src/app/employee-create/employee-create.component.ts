@@ -32,6 +32,15 @@ export class EmployeeCreateComponent {
 
 
   open() {
+    this.employee = {
+      firstName: '',
+      lastName: '',
+      phone: '',
+      street: '',
+      postcode: '',
+      city: '',
+      skillSet: []
+    };
     this.show = true;
     this.selectedQualificationIds = [];
   }
@@ -53,6 +62,7 @@ export class EmployeeCreateComponent {
   ngOnInit() {
     this.loadQualifications();
   }
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
   loadQualifications() {
     this.qualificationService.getQualifications().subscribe({
       next: qualifications => {
