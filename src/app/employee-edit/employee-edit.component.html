@@ -13,61 +13,61 @@
           <button class="btn-close" (click)="close()"></button>
         </div>
 
-          <div class="modal-body">
-            <h5>Kontakt informationen:</h5>
-            <div class="row mb-1">
-              <div class="col-md-3">
-                <strong>Vorname:</strong>
-              </div>
-              <div class="col-md-3">
-                <strong>Nachname:</strong>
-              </div>
-              <div class="col-md-3">
-                <strong>Telefonnummer:</strong>
-              </div>
+        <div class="modal-body">
+          <h5>Kontakt informationen:</h5>
+          <div class="row mb-1">
+            <div class="col-md-3">
+              <strong>Vorname:</strong>
             </div>
-            <div class="row mb-3">
-              <div class="col-md-3">
-                <input [(ngModel)]="employee.firstName">
-              </div>
-              <div class="col-md-3">
-                <input [(ngModel)]="employee.lastName">
-              </div>
-              <div class="col-md-3">
-                <input [(ngModel)]="employee.phone">
-              </div>
+            <div class="col-md-3">
+              <strong>Nachname:</strong>
             </div>
-            <h5>Addresse:</h5>
-            <div class="row mb-1">
-              <div class="col-md-3">
-                <strong>Postzahl:</strong>
-              </div>
-              <div class="col-md-3">
-                <strong>Ort:</strong>
-              </div>
-              <div class="col-md-3">
-                <strong>Straße:</strong>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-3">
-                <input [(ngModel)]="employee.postcode">
-              </div>
-              <div class="col-md-3">
-                <input [(ngModel)]="employee.city">
-              </div>
-              <div class="col-md-3">
-                <input [(ngModel)]="employee.street">
-              </div>
-            </div>
-            <div class="container mt-3">
-              <h5>Qualifikationen:</h5>
-              <li *ngFor="let s of employee?.skillSet">
-                {{ s.skill }}
-              </li>
+            <div class="col-md-3">
+              <strong>Telefonnummer:</strong>
             </div>
           </div>
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <input [(ngModel)]="employee.firstName">
+            </div>
+            <div class="col-md-3">
+              <input [(ngModel)]="employee.lastName">
+            </div>
+            <div class="col-md-3">
+              <input [(ngModel)]="employee.phone">
+            </div>
+          </div>
+          <h5>Addresse:</h5>
+          <div class="row mb-1">
+            <div class="col-md-3">
+              <strong>Postzahl:</strong>
+            </div>
+            <div class="col-md-3">
+              <strong>Ort:</strong>
+            </div>
+            <div class="col-md-3">
+              <strong>Straße:</strong>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <input [(ngModel)]="employee.postcode">
+            </div>
+            <div class="col-md-3">
+              <input [(ngModel)]="employee.city">
+            </div>
+            <div class="col-md-3">
+              <input [(ngModel)]="employee.street">
+            </div>
+          </div>
+          <div class="container mt-3">
+            <h5>Qualifikationen:</h5>
+            <li *ngFor="let s of employee?.skillSet">
+              {{ s.skill }}
+            </li>
+          </div>
         </div>
+      </div>
 
       <div class="modal-footer">
         <button class="btn btn-success" (click)="save()">Speichern</button>

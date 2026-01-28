@@ -1,0 +1,33 @@
+<div class="modal fade"
+     tabindex="-1"
+     [class.show]="show"
+     [style.display]="show ? 'block' : 'none'">
+
+  <div class="modal-dialog modal-xl modal-dialog-scrollable">
+    <div class="modal-content">
+      <div *ngIf="employee">
+        <div class="modal-header">
+          <h5 class="modal-title">
+            Mitarbeiter {{ employee.id }} löschen
+          </h5>
+          <button class="btn-close" (click)="close()"></button>
+        </div>
+
+        <div class="modal-body">
+          <td>
+            <button type="button" class="btn btn-info me-4"
+                    (click)="confirmDelete()">
+              Bestätigen
+            </button>
+            <button type="button" class="btn btn-primary me-4"
+                    (click)="close()">
+              Zurück
+            </button>
+          </td>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade show" *ngIf="show"></div>

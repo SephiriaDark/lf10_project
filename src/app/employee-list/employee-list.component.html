@@ -1,6 +1,9 @@
 <app-employee-details #detailsModal></app-employee-details>
 <app-employee-edit #editModal (saved)="refreshList()"></app-employee-edit>
-<h1 style="text-align:center">Mitarbeiterubersicht</h1>
+<app-employee-create #createModal (saved)="refreshList()"></app-employee-create>
+<app-employee-delete #deleteModal (saved)="refreshList()"></app-employee-delete>
+<div class="mb-4 mt-3">
+<h1 class="text-center">Mitarbeiterubersicht</h1>
 <ul>
   <div class="container mt-3">
     <h5 class="">Filter:
@@ -8,7 +11,7 @@
       <input type="text" placeholder="Nachname">
       <input type="text" placeholder="Ort">
       <input type="text" placeholder="Qualifikation" class="me-2">
-      <button type="submit" class="btn btn-success">Filter anwenden</button>
+      <button type="submit" class="btn btn-primary">Anwenden</button>
     </h5>
   </div>
 
@@ -33,21 +36,23 @@
       <td>
         <button type="button" class="btn btn-info me-4"
                 (click)="detailsModal.open(e)">
-          Details
+          Info
         </button>
         <button type="button" class="btn btn-primary me-4"
                 (click)="editModal.open(e)">
-          Edit
+          Bearbeiten
         </button>
-        <button type="button" class="btn btn-danger">
-          Delete
+        <button type="button" class="btn btn-danger"
+                (click)="deleteModal.open(e)">
+          Löschen
         </button>
       </td>
     </tr>
     </tbody>
   </table>
-  <button type="btn" class="btn btn-outline-primary">
+  <button type="btn" class="btn btn-outline-primary" (click)="createModal.open()">
     + Mitarbeiter anlegen
   </button>
   <!--  <Button (click)="addEmployee()" class="btn btn-primary">Neuer Mitarbeiter</Button>-->
 </ul>
+</div>
