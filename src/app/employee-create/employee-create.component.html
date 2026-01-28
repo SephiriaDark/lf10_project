@@ -12,7 +12,7 @@
       </div>
 
       <div class="modal-body">
-        <h5>Kontakt informationen:</h5>
+        <h5>Kontaktinformationen:</h5>
         <div class="row mb-3">
           <div class="col">
             <input class="form-control"
@@ -34,26 +34,56 @@
           </div>
         </div>
 
+        <h5>Adresse:</h5>
         <div class="row mb-3">
-          <h5>Addresse:</h5>
-          <div class="col">
+          <div class="col-4">
             <input class="form-control"
                    placeholder="Straße"
                    [(ngModel)]="employee.street">
           </div>
-          <div class="col">
+          <div class="col-2">
             <input class="form-control"
                    placeholder="PLZ"
                    [(ngModel)]="employee.postcode">
           </div>
-          <div class="col">
+          <div class="col-6">
             <input class="form-control"
                    placeholder="Ort"
                    [(ngModel)]="employee.city">
           </div>
         </div>
+
+        <h5>Qualifikationen:</h5>
+        <div class="row mb-3">
+          <div class="col">
+            <div class="qualification-selector border rounded p-3"
+                 style="max-height: 300px; overflow-y: auto;">
+              <div *ngIf="availableQualifications.length === 0" class="text-muted">
+                Lade Qualifikationen...
+              </div>
+              <div *ngFor="let qual of availableQualifications" class="form-check mb-2">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  [id]="'qual-' + qual.id"
+                  [checked]="isSelected(qual.id!)"
+                  (change)="toggleQualification(qual.id!)">
+                <label class="form-check-label" [for]="'qual-' + qual.id">
+                  {{qual.skill}}
+                </label>
+              </div>
+            </div>
+            <small class="text-muted" *ngIf="selectedQualificationIds.length > 0">
+              {{selectedQualificationIds.length}} Qualifikation(en) ausgewählt
+            </small>
+          </div>
+        </div>
       </div>
+
       <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="close()">
+          Abbrechen
+        </button>
         <button class="btn btn-success" (click)="save()">
           Speichern
         </button>

@@ -3,7 +3,7 @@
 <app-employee-create #createModal (saved)="refreshList()"></app-employee-create>
 <app-employee-delete #deleteModal (saved)="refreshList()"></app-employee-delete>
 <div class="mb-4 mt-3">
-<h1 class="text-center">Mitarbeiterubersicht</h1>
+<h1 class="text-center">Mitarbeiterübersicht</h1>
 <ul>
   <div class="container mt-3">
     <h5 class="">Filter:
@@ -32,7 +32,11 @@
       <td>{{e.firstName}}</td>
       <td>{{e.lastName}}</td>
       <td>{{e.city}}</td>
-      <td>None</td>
+      <td>  <ul class="list-unstyled mb-0">
+        <li *ngFor="let skill of e.skillSet">{{skill.skill}}</li>
+      </ul>
+      </td>
+
       <td>
         <button type="button" class="btn btn-info me-4"
                 (click)="detailsModal.open(e)">

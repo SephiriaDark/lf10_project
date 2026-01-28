@@ -37,7 +37,9 @@ export class EmployeeListComponent {
         .set('Content-Type', 'application/json')
         .set('Authorization', `Bearer ${token}`)
     }).subscribe({
-      next: list => this.employeesSubject.next(list),
+      next: list => {
+        this.employeesSubject.next(list);
+      },
       error: err => console.error(err)
     });
   }

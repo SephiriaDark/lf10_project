@@ -60,11 +60,30 @@
               <input [(ngModel)]="employee.street">
             </div>
           </div>
-          <div class="container mt-3">
-            <h5>Qualifikationen:</h5>
-            <li *ngFor="let s of employee?.skillSet">
-              {{ s.skill }}
-            </li>
+          <h5>Qualifikationen bearbeiten:</h5>
+          <div class="row mb-3">
+            <div class="col">
+              <div class="qualification-selector border rounded p-3"
+                   style="max-height: 300px; overflow-y: auto;">
+                <div *ngIf="availableQualifications.length === 0" class="text-muted">
+                  Lade Qualifikationen...
+                </div>
+                <div *ngFor="let qual of availableQualifications" class="form-check mb-2">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    [id]="'qual-edit-' + qual.id"
+                    [checked]="isSelected(qual.id!)"
+                    (change)="toggleQualification(qual.id!)">
+                  <label class="form-check-label" [for]="'qual-edit-' + qual.id">
+                    {{ qual.skill }}
+                  </label>
+                </div>
+              </div>
+              <small class="text-muted" *ngIf="selectedQualificationIds.length > 0">
+                {{ selectedQualificationIds.length }} Qualifikation(en) ausgewählt
+              </small>
+            </div>
           </div>
         </div>
       </div>
