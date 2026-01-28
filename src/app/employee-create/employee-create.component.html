@@ -13,43 +13,66 @@
 
       <div class="modal-body">
         <h5>Kontakt informationen:</h5>
+        <div class="row mb-1">
+          <div class="col-md-3">
+            <strong>Vorname:</strong>
+          </div>
+          <div class="col-md-3">
+            <strong>Nachname:</strong>
+          </div>
+          <div class="col-md-3">
+            <strong>Telefonnummer:</strong>
+          </div>
+        </div>
         <div class="row mb-3">
-          <div class="col">
+          <div class="col-md-3">
             <input class="form-control"
                    placeholder="Vorname"
                    [(ngModel)]="employee.firstName">
           </div>
-          <div class="col">
+          <div class="col-md-3">
             <input class="form-control"
                    placeholder="Nachname"
                    [(ngModel)]="employee.lastName">
           </div>
-        </div>
 
-        <div class="row mb-3">
-          <div class="col">
+          <div class="col-md-3">
             <input class="form-control"
                    placeholder="Telefon"
                    [(ngModel)]="employee.phone">
           </div>
+
         </div>
 
         <div class="row mb-3">
           <h5>Addresse:</h5>
-          <div class="col">
-            <input class="form-control"
-                   placeholder="Straße"
-                   [(ngModel)]="employee.street">
+          <div class="row mb-1">
+            <div class="col-md-3">
+              <strong>Postzahl:</strong>
+            </div>
+            <div class="col-md-3">
+              <strong>Ort:</strong>
+            </div>
+            <div class="col-md-3">
+              <strong>Straße:</strong>
+            </div>
           </div>
-          <div class="col">
-            <input class="form-control"
-                   placeholder="PLZ"
-                   [(ngModel)]="employee.postcode">
-          </div>
-          <div class="col">
-            <input class="form-control"
-                   placeholder="Ort"
-                   [(ngModel)]="employee.city">
+          <div class="row mb-3">
+            <div class="col-md-3">
+              <input class="form-control"
+                     placeholder="PLZ"
+                     [(ngModel)]="employee.postcode">
+            </div>
+            <div class="col-md-3">
+              <input class="form-control"
+                     placeholder="Ort"
+                     [(ngModel)]="employee.city">
+            </div>
+            <div class="col-md-3">
+              <input class="form-control"
+                     placeholder="Straße"
+                     [(ngModel)]="employee.street">
+            </div>
           </div>
         </div>
       </div>
