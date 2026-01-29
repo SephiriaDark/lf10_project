@@ -1,6 +1,7 @@
 .hitec_topnav_wrapper{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 4rem;
 }
 .hitec_topnav_logo{
     display: grid;
@@ -13,4 +14,21 @@
 }
 .hitec_topnav_logout {
     display: grid;
+}
+
+.hitec_topnav_logo button{
+    background-color: black;
+    color: aliceblue
+}
+.hitec_topnav_employees button{
+    background-color: black;
+    color: aliceblue
+}
+.hitec_topnav_qualification button {
+    background-color: black;
+    color: aliceblue
+}
+.hitec_topnav_logout button {
+    background-color: black;
+    color: aliceblue
 }

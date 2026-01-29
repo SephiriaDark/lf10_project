@@ -6,29 +6,8 @@
 }
 
 .hitec_login_title_banner{
-    border: 2px solid black;
     padding: 1rem;
     font-size: xx-large;
-}
-.hitec_login_username,
-.hitec_login_password{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-}
-
-.hitec_login_username_title,
-.hitec_login_password_title{
-    margin: 0.25rem;
-}
-
-.hitec_login_username_text,
-.hitec_login_password_text{
-    margin: 0.25rem;
-}
-
-.hitec_login_password{
-    margin-bottom: 2rem;
 }
 
 .hitec_login_button {
