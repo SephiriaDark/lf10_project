@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Employee } from '../Employee';
-
-import {TokenService} from "../TokenService";
+import { AuthService } from "../auth.service";
 import {Qualification} from "../Qualification";
 import {QualificationService} from "../QualfikationService";
 
@@ -25,7 +24,7 @@ export class EmployeeEditComponent {
   selectedQualificationIds: number[] = [];
   originalQualificationIds: number[] = [];
 
-  constructor(private http: HttpClient, private tokenService: TokenService,
+  constructor(private http: HttpClient, private authService: AuthService,
               private qualificationService: QualificationService) {}
 
   ngOnInit() {
@@ -69,7 +68,12 @@ export class EmployeeEditComponent {
   save() {
     if (!this.employee) return;
 
-    const token = this.tokenService.getToken();
+    const token = this.authService.getAccessToken();
+
+    if (!this.authService.hasValidToken()) {
+      console.error('Kein gültiger Token vorhanden. Bitte einloggen.');
+      return;
+    }
 
     const payload = {
       firstName: this.employee.firstName,

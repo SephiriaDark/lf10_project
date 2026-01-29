@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Employee } from '../Employee';
-import {TokenService} from "../TokenService";
 import {QualificationService} from "../QualfikationService";
 import {Qualification} from "../Qualification";
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -57,7 +57,7 @@ export class EmployeeCreateComponent {
     };
     this.selectedQualificationIds = [];
   }
-  constructor(private http: HttpClient, private tokenService: TokenService, private qualificationService: QualificationService) {}
+  constructor(private http: HttpClient, private authService: AuthService, private qualificationService: QualificationService) {}
 
   ngOnInit() {
     this.loadQualifications();
@@ -82,9 +82,14 @@ export class EmployeeCreateComponent {
   isSelected(qualificationId: number): boolean {
     return this.selectedQualificationIds.includes(qualificationId);
   }
-  
+
   save() {
-    const token =this.tokenService.getToken();
+    const token = this.authService.getAccessToken();
+
+    if (!this.authService.hasValidToken()) {
+      console.error('Kein gültiger Token vorhanden. Bitte einloggen.');
+      return;
+    }
 
     this.http.post<Employee>(
       'http://localhost:8089/employees',

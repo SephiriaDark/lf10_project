@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Employee } from '../Employee';
 import {FormsModule} from "@angular/forms";
-
-import {TokenService} from "../TokenService";
+import { AuthService } from "../auth.service";
 
 
 @Component({
@@ -19,7 +18,7 @@ export class EmployeeDeleteComponent {
   show = false;
   employee?: Employee;
 
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   open(employee: Employee) {
     this.employee = { ...employee };
@@ -33,7 +32,12 @@ export class EmployeeDeleteComponent {
   confirmDelete() {
     if (!this.employee?.id) return;
 
-    const token =this.tokenService.getToken();
+    const token = this.authService.getAccessToken();
+
+    if (!this.authService.hasValidToken()) {
+      console.error('Kein gültiger Token vorhanden. Bitte einloggen.');
+      return;
+    }
 
     this.http.delete(
       `http://localhost:8089/employees/${this.employee.id}`,

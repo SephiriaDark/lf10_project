@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service'; // Pfad anpassen
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,9 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   login() {
-    this.router.navigate(['home']);
+    this.authService.login();
   }
 }

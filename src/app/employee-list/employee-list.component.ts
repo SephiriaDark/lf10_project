@@ -10,8 +10,6 @@ import {EmployeeCreateComponent} from "../employee-create/employee-create.compon
 import {EmployeeDeleteComponent} from "../employee-delete/employee-delete.component";
 import {FormsModule} from "@angular/forms";
 
-import {TokenService} from "../TokenService";
-
 @Component({
   selector: 'app-employee-list',
   standalone: true,
@@ -25,8 +23,7 @@ export class EmployeeListComponent {
 
   constructor(
     private http: HttpClient,
-    private authService: AuthService,
-    private tokenService: TokenService
+    private authService: AuthService
   ) {
     this.fetchData();
   }
@@ -40,7 +37,13 @@ export class EmployeeListComponent {
   private allEmployees: Employee[] = [];
 
   fetchData() {
-    const token =this.tokenService.getToken();
+    const token = this.authService.getAccessToken();
+
+    if (!this.authService.hasValidToken()) {
+      console.error('Kein gültiger Token vorhanden. Bitte einloggen.');
+      return;
+    }
+    
     this.http.get<Employee[]>('http://localhost:8089/employees', {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')

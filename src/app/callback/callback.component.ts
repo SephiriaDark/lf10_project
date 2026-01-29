@@ -17,7 +17,7 @@ export class CallbackComponent implements OnInit {
     const success = await this.authService.handleCallback();
 
     if (success) {
-      this.router.navigate(['/employees']);
+      this.router.navigate(['/home']);
     } else {
       this.router.navigate(['/']);
     }
