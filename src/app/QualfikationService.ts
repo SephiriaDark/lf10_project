@@ -4,7 +4,6 @@ import {AuthService} from "./auth.service";
 import {Observable} from "rxjs";
 import {Qualification} from "./Qualification";
 
-import {TokenService} from './TokenService';
 
 @Injectable({
     providedIn: 'root'
@@ -13,11 +12,11 @@ export class QualificationService {
     private apiUrl = 'http://localhost:8089/qualifications';
   //private apiUrl = 'https://employee.szut.dev/qualifications'
 
-    constructor(private http: HttpClient, private authService: AuthService, private tokenService: TokenService) {}
+    constructor(private http: HttpClient, private authService: AuthService) {}
 
     private getHeaders(): HttpHeaders {
-        //const token = this.authService.getAccessToken();
-        const token =this.tokenService.getToken();
+
+        const token = this.authService.getAccessToken();
 
         return new HttpHeaders()
             .set('Authorization', `Bearer ${token}`)
