@@ -16,43 +16,47 @@
       </div>
     </div>
 
-    <table class="table table-bordered table-striped">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Vorname</th>
-        <th>Nachname</th>
-        <th>Ort</th>
-        <th>Qualifikation</th>
-        <th>Aktionen</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let e of employees$ | async">
-        <td>{{ e.id }}</td>
-        <td>{{ e.firstName }}</td>
-        <td>{{ e.lastName }}</td>
-        <td>{{ e.city }}</td>
-        <td>None</td>
-        <td>
-          <button type="button" class="btn btn-info me-4"
-                  (click)="detailsModal.open(e)">
-            Info
-          </button>
-          <button type="button" class="btn btn-primary me-4"
-                  (click)="editModal.open(e)">
-            Bearbeiten
-          </button>
-          <button type="button" class="btn btn-danger"
-                  (click)="deleteModal.open(e)">
-            Löschen
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <button type="btn" class="btn btn-outline-primary" (click)="createModal.open()">
-      + Mitarbeiter anlegen
-    </button>
-  </ul>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>Ort</th>
+      <th>Qualifikation</th>
+      <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let e of employees$ | async">
+      <td>{{e.id}}</td>
+      <td>{{e.firstName}}</td>
+      <td>{{e.lastName}}</td>
+      <td>{{e.city}}</td>
+      <td>  <ul class="list-unstyled mb-0">
+        <li *ngFor="let skill of e.skillSet">{{skill.skill}}</li>
+      </ul>
+      </td>
+
+      <td>
+        <button type="button" class="btn btn-info me-4"
+                (click)="detailsModal.open(e)">
+          Info
+        </button>
+        <button type="button" class="btn btn-primary me-4"
+                (click)="editModal.open(e)">
+          Bearbeiten
+        </button>
+        <button type="button" class="btn btn-danger"
+                (click)="deleteModal.open(e)">
+          Löschen
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <button type="btn" class="btn btn-outline-primary" (click)="createModal.open()">
+    + Mitarbeiter anlegen
+  </button>
+</ul>
 </div>
