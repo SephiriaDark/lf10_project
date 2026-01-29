@@ -16,8 +16,10 @@ export class LogoutComponent {
 
   public logout(){
     if(confirm('Are you sure you want to logout?')){
-      //this.authService.logout();
       this.router.navigate(['login']);
+      if(true){
+        return this.authService.logout();
+      }
     }
   }
 }
