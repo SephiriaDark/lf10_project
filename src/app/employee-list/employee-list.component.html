@@ -4,59 +4,61 @@
 <app-employee-delete #deleteModal (saved)="refreshList()"></app-employee-delete>
 <div class="mb-4 mt-3">
   <h1 class="text-center">Mitarbeiterübersicht</h1>
-  <ul>
-    <div class="mb-4 mt-3">
-      <div class="d-flex justify-content-center align-items-center gap-2">
-        <label for="filterInput" class="me-2">Filter:</label>
-        <input type="text" class="form-control" placeholder="Vorname" style="width: 150px;" [(ngModel)]="filter.firstName">
-        <input type="text" class="form-control" placeholder="Nachname" style="width: 150px;" [(ngModel)]="filter.lastName">
-        <input type="text" class="form-control" placeholder="Ort" style="width: 150px;" [(ngModel)]="filter.city">
-        <input type="text" class="form-control" placeholder="Qualifikation" style="width: 150px;" [(ngModel)]="filter.skill">
-        <button type="submit" class="btn btn-primary" (click)="applyFilter()">Anwenden</button>
+  <div class="d-flex justify-content-center w-100">
+    <ul style="width: 90vw;">
+      <div class="mb-4 mt-3">
+        <div class="d-flex justify-content-center align-items-center gap-2">
+          <label for="filterInput" class="me-2">Filter:</label>
+          <input type="text" class="form-control" placeholder="Vorname" style="width: 150px;" [(ngModel)]="filter.firstName">
+          <input type="text" class="form-control" placeholder="Nachname" style="width: 150px;" [(ngModel)]="filter.lastName">
+          <input type="text" class="form-control" placeholder="Ort" style="width: 150px;" [(ngModel)]="filter.city">
+          <input type="text" class="form-control" placeholder="Qualifikation" style="width: 150px;" [(ngModel)]="filter.skill">
+          <button type="submit" class="btn btn-primary" (click)="applyFilter()">Anwenden</button>
+        </div>
       </div>
-    </div>
 
-  <table class="table table-bordered table-striped" style="max-width: 1450px;">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Vorname</th>
-      <th>Nachname</th>
-      <th>Ort</th>
-      <th>Qualifikation</th>
-      <th>Aktionen</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let e of employees$ | async">
-      <td>{{e.id}}</td>
-      <td>{{e.firstName}}</td>
-      <td>{{e.lastName}}</td>
-      <td>{{e.city}}</td>
-      <td>  <ul class="list-unstyled mb-0">
-        <li *ngFor="let skill of e.skillSet">{{skill.skill}}</li>
-      </ul>
-      </td>
+      <table class="table table-bordered table-striped w-100">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Vorname</th>
+          <th>Nachname</th>
+          <th>Ort</th>
+          <th>Qualifikation</th>
+          <th>Aktionen</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let e of employees$ | async">
+          <td>{{e.id}}</td>
+          <td>{{e.firstName}}</td>
+          <td>{{e.lastName}}</td>
+          <td>{{e.city}}</td>
+          <td>  <ul class="list-unstyled mb-0">
+            <li *ngFor="let skill of e.skillSet">{{skill.skill}}</li>
+          </ul>
+          </td>
 
-      <td style="max-width: 150px;">
-        <button type="button" class="btn btn-info me-2"
-                (click)="detailsModal.open(e)">
-          Info
-        </button>
-        <button type="button" class="btn btn-primary me-2"
-                (click)="editModal.open(e)">
-          Bearbeiten
-        </button>
-        <button type="button" class="btn btn-danger"
-                (click)="deleteModal.open(e)">
-          Löschen
-        </button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <button type="btn" class="btn btn-outline-primary" (click)="createModal.open()">
-    + Mitarbeiter anlegen
-  </button>
-</ul>
+          <td style="max-width: 150px;">
+            <button type="button" class="btn btn-info me-2 m-2"
+                    (click)="detailsModal.open(e)">
+              Info
+            </button>
+            <button type="button" class="btn btn-primary me-2 m-2"
+                    (click)="editModal.open(e)">
+              Bearbeiten
+            </button>
+            <button type="button" class="btn btn-danger m-2"
+                    (click)="deleteModal.open(e)">
+              Löschen
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <button type="btn" class="btn btn-outline-primary" (click)="createModal.open()">
+        + Mitarbeiter anlegen
+      </button>
+    </ul>
+  </div>
 </div>

@@ -1,23 +1,18 @@
-<!-- Todo: Login korrekt implementieren -->
-<div class="hitec_login_wrapper">
-    <div class="hitec_login_title_banner">
-        HiTec GmbH | Employee Management System
+
+<div class="hitec_login_wrapper min-vh-100 d-flex align-items-center justify-content-center bg-dark">
+    <div class="hitec_login_content bg-white p-4 rounded shadow" style="width: 100%; max-width: 400px;">
+        
+        <div class="hitec_login_title_banner text-center fw-bold mb-4">
+            <h1>HiTec GmbH<br></h1>
+            <small class="text-muted">Employee Management System</small>
+        </div>
+
+        <button
+            class="btn btn-primary w-100"
+            type="button"
+            (click)="login()">
+            Login with Authentic
+        </button>
+
     </div>
-    <div class="hitec_login_username">
-        <div class="hitec_login_username_title">
-            Username
-        </div>
-        <div class="hitec_login_username_text" required>
-            <input type="text"/>
-        </div>
-    </div>
-    <div class="hitec_login_password">
-        <div class="hitec_login_password_title">
-            Passwort
-        </div>
-        <div class="hitec_login_password_text" required>
-            <input type="password"/>
-        </div>
-    </div>
-    <button type="button" (click)="login()">Login</button>
 </div>
