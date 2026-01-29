@@ -1,4 +1,4 @@
-<app-employee-details #detailsModal></app-employee-details>
+<app-employee-details #detailsModal ></app-employee-details>
 <app-employee-edit #editModal (saved)="refreshList()"></app-employee-edit>
 <app-employee-create #createModal (saved)="refreshList()"></app-employee-create>
 <app-employee-delete #deleteModal (saved)="refreshList()"></app-employee-delete>
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-  <table class="table table-bordered table-striped">
+  <table class="table table-bordered table-striped" style="max-width: 1450px;">
     <thead>
     <tr>
       <th>ID</th>
@@ -38,12 +38,12 @@
       </ul>
       </td>
 
-      <td>
-        <button type="button" class="btn btn-info me-4"
+      <td style="max-width: 150px;">
+        <button type="button" class="btn btn-info me-2"
                 (click)="detailsModal.open(e)">
           Info
         </button>
-        <button type="button" class="btn btn-primary me-4"
+        <button type="button" class="btn btn-primary me-2"
                 (click)="editModal.open(e)">
           Bearbeiten
         </button>
