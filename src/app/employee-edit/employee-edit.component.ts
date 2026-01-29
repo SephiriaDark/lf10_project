@@ -88,34 +88,12 @@ export class EmployeeEditComponent {
     ).subscribe({
       next: () => {
         this.saved.emit();
+        location.reload();
         this.close();
       },
       error: err => console.error('Save failed', err)
     });
   }
-
-
-  private updateQualifications(employeeId: number, token: string) {
-  const payload = this.selectedQualificationIds.map(id => {
-    const q = this.availableQualifications.find(a => a.id === id);
-    return {
-      id,
-      skill: q?.skill
-    };
-  });
-
-  this.http.put(
-    `http://localhost:8089/employees/${employeeId}/qualifications`,
-    payload,
-    { headers: this.authHeaders(token) }
-  ).subscribe({
-    next: () => {
-      this.saved.emit();
-      this.close();
-    },
-    error: err => console.error('Qualification update failed', err)
-  });
-}
 
   private authHeaders(token: string) {
     return new HttpHeaders()
