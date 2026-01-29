@@ -69,101 +69,57 @@ export class EmployeeEditComponent {
   save() {
     if (!this.employee) return;
 
-    const token =this.tokenService.getToken();
+    const token = this.tokenService.getToken();
 
     const payload = {
-      id: this.employee.id,
       firstName: this.employee.firstName,
       lastName: this.employee.lastName,
       street: this.employee.street,
       postcode: this.employee.postcode,
       city: this.employee.city,
-      phone: this.employee.phone
+      phone: this.employee.phone,
+      skillSet: this.selectedQualificationIds
     };
+
     this.http.put(
       `http://localhost:8089/employees/${this.employee.id}`,
       payload,
-      {
-        headers: new HttpHeaders()
-          .set('Content-Type', 'application/json')
-          .set('Authorization', `Bearer ${token}`)
-      }
+      { headers: this.authHeaders(token) }
     ).subscribe({
       next: () => {
-        console.log('Employee saved');
-        this.updateQualifications(this.employee!.id!, token);
         this.saved.emit();
         this.close();
       },
       error: err => console.error('Save failed', err)
     });
   }
+
+
   private updateQualifications(employeeId: number, token: string) {
-    // Знаходимо які треба додати і які видалити
-    const toAdd = this.selectedQualificationIds.filter(
-        id => !this.originalQualificationIds.includes(id)
-    );
-    const toRemove = this.originalQualificationIds.filter(
-        id => !this.selectedQualificationIds.includes(id)
-    );
+  const payload = this.selectedQualificationIds.map(id => {
+    const q = this.availableQualifications.find(a => a.id === id);
+    return {
+      id,
+      skill: q?.skill
+    };
+  });
 
-    const totalOperations = toAdd.length + toRemove.length;
-
-    if (totalOperations === 0) {
-      // Немає змін
+  this.http.put(
+    `http://localhost:8089/employees/${employeeId}/qualifications`,
+    payload,
+    { headers: this.authHeaders(token) }
+  ).subscribe({
+    next: () => {
       this.saved.emit();
       this.close();
-      return;
-    }
+    },
+    error: err => console.error('Qualification update failed', err)
+  });
+}
 
-    let completed = 0;
-
-    toAdd.forEach(qualId => {
-      const qualification = this.availableQualifications.find(q => q.id === qualId);
-
-      this.http.post(
-          `http://localhost:8089/employees/${employeeId}/qualifications`,
-          {
-            id: qualId,
-            skill: qualification?.skill
-          },
-          {
-            headers: new HttpHeaders()
-                .set('Content-Type', 'application/json')
-                .set('Authorization', `Bearer ${token}`)
-          }
-      ).subscribe({
-        next: () => {
-          completed++;
-          if (completed === totalOperations) {
-            this.saved.emit();
-            this.close();
-          }
-        },
-        error: err => console.error('Failed to add qualification', err)
-      });
-    });
-
-    toRemove.forEach(qualId => {
-      this.http.delete(
-          `http://localhost:8089/employees/${employeeId}/qualifications`,
-          {
-            headers: new HttpHeaders()
-                .set('Content-Type', 'application/json')
-                .set('Authorization', `Bearer ${token}`),
-            body: { id: qualId }
-          }
-      ).subscribe({
-        next: () => {
-          completed++;
-          if (completed === totalOperations) {
-            this.saved.emit();
-            this.close();
-          }
-        },
-        error: err => console.error('Failed to remove qualification', err)
-      });
-    });
+  private authHeaders(token: string) {
+    return new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', `Bearer ${token}`);
   }
-
 }

@@ -62,7 +62,6 @@ export class EmployeeCreateComponent {
   ngOnInit() {
     this.loadQualifications();
   }
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
   loadQualifications() {
     this.qualificationService.getQualifications().subscribe({
       next: qualifications => {
