@@ -82,6 +82,7 @@ export class EmployeeCreateComponent {
   isSelected(qualificationId: number): boolean {
     return this.selectedQualificationIds.includes(qualificationId);
   }
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
   save() {
     const token =this.tokenService.getToken();
