@@ -1,3 +1,4 @@
+//Legacy, not needed anymore
 import { Injectable } from '@angular/core';
 
 @Injectable({

@@ -1,5 +1,6 @@
 .hitec_topnav_logout_button {
     height: 4rem;
     background-color: black;
-    color: aliceblue
+    color: aliceblue;
+    font-size: x-large;
 }

@@ -18,17 +18,21 @@
 
 .hitec_topnav_logo button{
     background-color: black;
-    color: aliceblue
+    color: aliceblue;
+    font-size: x-large;
 }
 .hitec_topnav_employees button{
     background-color: black;
-    color: aliceblue
+    color: aliceblue;
+    font-size: x-large;
 }
 .hitec_topnav_qualification button {
     background-color: black;
-    color: aliceblue
+    color: aliceblue;
+    font-size: x-large;
 }
 .hitec_topnav_logout button {
     background-color: black;
-    color: aliceblue
+    color: aliceblue;
+    font-size: x-large;
 }
