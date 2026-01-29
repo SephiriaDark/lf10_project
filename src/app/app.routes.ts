@@ -19,7 +19,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'home',
@@ -33,7 +33,6 @@ export const routes: Routes = [
         path: 'qualifications',
         loadComponent: () => import('./qualification-list/qualification-list.component').then(m => m.QualificationListComponent)
       }
-      // Other Routes
     ]
   },
 
