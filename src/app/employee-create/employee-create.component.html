@@ -28,18 +28,40 @@
           <div class="col-md-3">
             <input class="form-control"
                    placeholder="Vorname"
-                   [(ngModel)]="employee.firstName">
+                   [(ngModel)]="employee.firstName"
+                   name="firstName"
+                   required
+                   #firstName="ngModel"
+                   [ngClass]="{'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched)}">
+            <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="text-danger">
+              Bitte geben Sie den Vornamen ein.
+            </div>
+
           </div>
           <div class="col-md-3">
             <input class="form-control"
                    placeholder="Nachname"
-                   [(ngModel)]="employee.lastName">
+                   [(ngModel)]="employee.lastName"
+                   required
+                   #lastName="ngModel"
+                   [ngClass]="{'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched)}">
+            <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="text-danger">
+              Bitte geben Sie den Nachnamen ein.
+            </div>
           </div>
 
           <div class="col-md-3">
             <input class="form-control"
                    placeholder="Telefon"
-                   [(ngModel)]="employee.phone">
+                   [(ngModel)]="employee.phone"
+                   required
+                   #phone="ngModel"
+                   pattern="^[0-9]+$"
+                   [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}">
+            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-danger">
+              <div *ngIf="phone.errors?.['required']">Bitte geben Sie die Telefonnummer ein.</div>
+              <div *ngIf="phone.errors?.['pattern']">Die Telefonnummer darf nur Ziffern enthalten.</div>
+            </div>
           </div>
 
         </div>
@@ -61,17 +83,37 @@
             <div class="col-md-3">
               <input class="form-control"
                      placeholder="PLZ"
-                     [(ngModel)]="employee.postcode">
+                     [(ngModel)]="employee.postcode"
+                     required
+                     pattern="^\d{5}$"
+                     #postcode="ngModel"
+                     [ngClass]="{'is-invalid': postcode.invalid && (postcode.dirty || postcode.touched)}">
+              <div *ngIf="postcode.invalid && (postcode.dirty || postcode.touched)" class="text-danger">
+                <div *ngIf="postcode.errors?.['required']">Bitte geben Sie die PLZ ein.</div>
+                <div *ngIf="postcode.errors?.['pattern']">Die PLZ muss genau 5 Ziffern enthalten.</div>
+              </div>
             </div>
             <div class="col-md-3">
               <input class="form-control"
                      placeholder="Ort"
-                     [(ngModel)]="employee.city">
+                     [(ngModel)]="employee.city"
+                     required
+                     #city="ngModel"
+                     [ngClass]="{'is-invalid': city.invalid && (city.dirty || city.touched)}">
+              <div *ngIf="city.invalid && (city.dirty || city.touched)" class="text-danger">
+                Bitte geben Sie den Ort ein.
+              </div>
             </div>
             <div class="col-md-3">
               <input class="form-control"
                      placeholder="Straße"
-                     [(ngModel)]="employee.street">
+                     [(ngModel)]="employee.street"
+                     required
+                     #street="ngModel"
+                     [ngClass]="{'is-invalid': street.invalid && (street.dirty || street.touched)}">
+              <div *ngIf="street.invalid && (street.dirty || street.touched)" class="text-danger">
+                Bitte geben Sie die Straße ein.
+              </div>
             </div>
           </div>
         </div>

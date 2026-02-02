@@ -84,10 +84,23 @@ export class EmployeeCreateComponent {
   }
 
   save() {
+    if (!this.employee.firstName || !this.employee.lastName || !this.employee.phone ||
+      !this.employee.street || !this.employee.postcode || !this.employee.city) {
+      alert("Bitte füllen Sie alle Pflichtfelder aus: Vorname, Nachname, Telefon, Straße, PLZ und Ort.");
+      return;
+    }
+    if (!/^[0-9]+$/.test(this.employee.phone)) {
+      alert("Die Telefonnummer darf nur Ziffern enthalten.");
+      return;
+    }
+    if (!/^\d{5}$/.test(this.employee.postcode)) {
+      alert("Die PLZ muss genau 5 Ziffern enthalten.");
+      return;
+    }
     const token = this.authService.getAccessToken();
 
     if (!this.authService.hasValidToken()) {
-      console.error('Kein gültiger Token vorhanden. Bitte einloggen.');
+      alert('Kein gültiger Token vorhanden. Bitte einloggen.');
       return;
     }
 
@@ -105,7 +118,7 @@ export class EmployeeCreateComponent {
         this.saved.emit();
         this.close();
       },
-      error: err => console.error('Create failed', err)
+      error: err => alert('Erstellung fehlgeschlagen. Bitte geben Sie gültige Daten ein!')
     });
   }
 
@@ -136,7 +149,7 @@ export class EmployeeCreateComponent {
               this.close();
             }
           },
-          error: err => console.error('Failed to add qualification', err)
+          error: err => alert('Fehler aufgetreten, Qualifikationen könnten nicht hinzugefügt werden!')
         });
       });
     } else {
