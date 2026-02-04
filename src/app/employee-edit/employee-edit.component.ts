@@ -18,7 +18,15 @@ export class EmployeeEditComponent {
   @Output() saved = new EventEmitter<void>();
 
   show = false;
-  employee?: Employee;
+  employee: Employee = {
+    firstName: '',
+    lastName: '',
+    phone: '',
+    street: '',
+    postcode: '',
+    city: '',
+    skillSet: []
+  };
 
   availableQualifications: Qualification[] = [];
   selectedQualificationIds: number[] = [];
@@ -66,7 +74,19 @@ export class EmployeeEditComponent {
   }
 
   save() {
-    if (!this.employee) return;
+    if (!this.employee.firstName || !this.employee.lastName || !this.employee.phone ||
+      !this.employee.street || !this.employee.postcode || !this.employee.city) {
+      alert("Bitte füllen Sie alle Pflichtfelder aus: Vorname, Nachname, Telefon, Straße, PLZ und Ort.");
+      return;
+    }
+    if (!/^\+?[0-9]+$/.test(this.employee.phone)) {
+      alert("Die Telefonnummer darf nur Ziffern enthalten.");
+      return;
+    }
+    if (!/^\d{5}$/.test(this.employee.postcode)) {
+      alert("Die PLZ muss genau 5 Ziffern enthalten.");
+      return;
+    }
 
     const token = this.authService.getAccessToken();
 
