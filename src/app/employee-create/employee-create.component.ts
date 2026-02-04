@@ -89,7 +89,7 @@ export class EmployeeCreateComponent {
       alert("Bitte füllen Sie alle Pflichtfelder aus: Vorname, Nachname, Telefon, Straße, PLZ und Ort.");
       return;
     }
-    if (!/^[0-9]+$/.test(this.employee.phone)) {
+    if (!/^\+?[0-9]+$/.test(this.employee.phone)) {
       alert("Die Telefonnummer darf nur Ziffern enthalten.");
       return;
     }

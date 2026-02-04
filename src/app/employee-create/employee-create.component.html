@@ -56,7 +56,7 @@
                    [(ngModel)]="employee.phone"
                    required
                    #phone="ngModel"
-                   pattern="^[0-9]+$"
+                   pattern="^\+?[0-9]+$"
                    [ngClass]="{'is-invalid': phone.invalid && (phone.dirty || phone.touched)}">
             <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-danger">
               <div *ngIf="phone.errors?.['required']">Bitte geben Sie die Telefonnummer ein.</div>
